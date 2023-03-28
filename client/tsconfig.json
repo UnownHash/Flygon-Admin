@@ -1,0 +1,45 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"strictNullChecks": true,
+		"esModuleInterop": true,
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"types": ["vite/client"],
+		"removeComments": true,
+		"downlevelIteration": true,
+		"allowSyntheticDefaultImports": true,
+		"isolatedModules": true,
+		"baseUrl": "./src",
+		"rootDir": "./",
+		"outDir": "../dist",
+		"lib": [
+			"ESNext",
+			"dom"
+		],
+    "jsx": "react-jsx",
+		"strict": true,
+		"sourceMap": true,
+		"target": "ESNext",
+		"skipLibCheck": true,
+		"allowJs": true,
+		"paths": {
+			"@components/*": [
+				"./components/*"
+			],
+			"@features/*": [
+				"./features/*"
+			],
+		},
+	},
+	"include": [
+		"src",
+		"vite.config.ts",
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"server"
+	],
+}
