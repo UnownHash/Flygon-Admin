@@ -47,6 +47,5 @@ export const AreaForm = () => (
       defaultValue={'[]'}
     />
     <RouteInput source="quest_mode.route" label="Route" />
-    <NumberInput source="quest_mode.max_login_queue" label="Max login queue" fullWidth />
   </SimpleForm>
 );

@@ -20,7 +20,7 @@ func setDefaults() {
 func ReadConfig() {
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
-	viper.AddConfigPath(".")
+	viper.AddConfigPath("../")
 
 	viper.SetEnvPrefix("flygon-admin")
 	viper.AutomaticEnv()

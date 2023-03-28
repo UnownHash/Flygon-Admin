@@ -14,7 +14,6 @@ import {
 } from 'react-admin';
 
 import { Area } from './type';
-import { BulkQuestingButton, StartQuestingButton } from '@features/area/StartQuestingButton';
 import { AreaExpand } from './AreaExpand';
 
 const ListActions = () => (
@@ -35,7 +34,6 @@ export const AreaList = () => {
         expand={<AreaExpand />}
         bulkActionButtons={
           <>
-            <BulkQuestingButton />
             <BulkDeleteWithUndoButton />
           </>
         }
@@ -49,14 +47,12 @@ export const AreaList = () => {
           label="Quest hours"
           render={(area) => {
             const hours = area?.quest_mode.hours;
-            if (!hours || !Array.isArray(hours) || hours.length < 2) {
+            if (!hours || !Array.isArray(hours)) {
               return '-';
             }
-
             return hours.join(',');
           }}
         />
-        <StartQuestingButton />
         <EditButton />
         <DeleteWithUndoButton />
       </Datagrid>

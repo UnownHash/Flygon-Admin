@@ -6,7 +6,6 @@
 		"esModuleInterop": true,
 		"module": "ESNext",
 		"moduleResolution": "node",
-		"types": ["vite/client"],
 		"removeComments": true,
 		"downlevelIteration": true,
 		"allowSyntheticDefaultImports": true,
