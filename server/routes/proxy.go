@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flygon-admin/server/config"
 	"flygon-admin/server/util"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -36,7 +35,6 @@ func BuildRequest(dest string, c *gin.Context) (err error) {
 		return err
 	}
 
-	fmt.Println(GetSecret(dest))
 	req.Header.Set(GetSecret(dest))
 
 	httpClient := &http.Client{}
