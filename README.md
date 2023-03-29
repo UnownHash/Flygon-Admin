@@ -33,13 +33,16 @@ nano config.toml
 4. Compile the client
 
 ```bash
-cd client && yarn install && yarn build
+cd client
+yarn install
+yarn build
 ```
 
 5. Compile the server
 
 ```bash
-cd ../server && go build
+cd ../server
+go build
 ```
 
 6. Run server
@@ -47,6 +50,13 @@ cd ../server && go build
 ```bash
 ./server
 ```
+
+**Updating** 
+1. Pull repo
+```bash
+git pull
+```
+2. Repeat steps 4-6 above
 
 ### Docker Setup
 
@@ -66,6 +76,13 @@ nano docker-compose.override.yml
 
 ```bash
 `docker-compose up -d`
+```
+
+**Updating**
+```bash
+docker-compose pull 
+docker-compose down
+docker-compose up -d
 ```
 
 ## Development
