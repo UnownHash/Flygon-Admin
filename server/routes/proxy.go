@@ -38,6 +38,10 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 
 	req.Header.Set(getSecret(dest))
 
+	for header := range c.Request.Header {
+		req.Header.Set(header, c.Request.Header.Get(header))
+	}
+
 	httpClient := &http.Client{}
 	res, err := httpClient.Do(req)
 

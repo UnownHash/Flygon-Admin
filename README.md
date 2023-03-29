@@ -8,12 +8,19 @@
 2. [Node 18](https://nodejs.org/en/download)
 3. [Yarn 1.22](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
 
-### Setup
+### Base Setup
 
 1. `cp config.toml.example config.toml`
-2. `cd client && yarn install && yarn build`
-3. `cd ../server && go build`
-4. `./server`
+2. Fill out the config.toml file
+3. `cd client && yarn install && yarn build`
+4. `cd ../server && go build`
+5. `./server`
+
+### Docker Setup
+
+1. `cp docker-compose.yml docker-compose.override.yml`
+2. Fill out the docker-compose.override.yml file
+3. `docker-compose up -d`
 
 ## Development
 

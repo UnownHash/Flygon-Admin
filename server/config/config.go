@@ -15,6 +15,7 @@ func setDefaults() {
 
 	viper.SetDefault("golbat.api_endpoint", "http://127.0.0.1:9001")
 	viper.SetDefault("golbat.api_secret", "")
+
 	viper.SetDefault("flygon.api_endpoint", "http://127.0.0.1:9002")
 	viper.SetDefault("flygon.api_secret", "")
 }
@@ -24,7 +25,6 @@ func ReadConfig() {
 	viper.SetConfigType("toml")
 	viper.AddConfigPath("../")
 
-	viper.SetEnvPrefix("flygon-admin")
 	viper.AutomaticEnv()
 
 	stringReplacer := strings.NewReplacer(".", "_")
