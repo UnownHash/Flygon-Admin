@@ -14,102 +14,120 @@
 
 1. Clone Repo
 
-```bash
-git clone https://github.com/UnownHash/Flygon-Admin.git`
-```
+    ```bash
+    git clone https://github.com/UnownHash/Flygon-Admin.git
+    ```
 
-2. Create the config file
+1. Change Directory to the Repo
 
-```bash
-cp config.toml.example config.toml
-```
+    ```bash
+    cd Flygon-Admin
+    ```
 
-3. Fill out the config file
+1. Create the config file
 
-```bash
-nano config.toml
-```
+    ```bash
+    cp config.toml.example config.toml
+    ```
 
-4. Compile the client
+1. Fill out the config file
 
-```bash
-cd client
-yarn install
-yarn build
-```
+    ```bash
+    nano config.toml
+    ```
 
-5. Compile the server
+1. Compile the client
 
-```bash
-cd ../server
-go build
-```
+    ```bash
+    cd client
+    yarn install
+    yarn build
+    ```
 
-6. Run server
+1. Compile the server
 
-```bash
-./server
-```
+    ```bash
+    cd ../server
+    go build
+    ```
+
+1. Run server
+
+    ```bash
+    ./server
+    ```
 
 ### Updating
 
 1. Pull repo
 
-```bash
-git pull
-```
+    ```bash
+    git pull
+    ```
 
-2. Repeat steps 4-6 from the [standard setup](#standard-setup)
+1. Repeat steps 5-7 from the [standard setup](#standard-setup)
 
 ## PM2 Setup
 
 1. Install PM2
 
-```bash
-npm install pm2 -g
-```
+    ```bash
+    npm install pm2 -g
+    ```
 
-2. Follow steps 1-5 from the [standard setup](#standard-setup)
-3. From the `server` directory, add to PM2:
+1. Follow steps 1-6 from the [standard setup](#standard-setup)
+1. From the `server` directory, add to PM2:
 
-```bash
-pm2 start server --name "Flygon-Admin"
-```
+    ```bash
+    pm2 start server --name "Flygon-Admin"
+    ```
 
-4. Save PM2 processes
+1. Save PM2 processes
 
-```bash
-pm2 save
-```
+    ```bash
+    pm2 save
+    ```
 
 ### Updating
 
-1. Follow steps 4-5 from the [standard setup](#standard-setup)
-2. Restart PM2 process
+1. Follow steps 5-6 from the [standard setup](#standard-setup)
+1. Restart PM2 process
 
-```bash
-pm2 restart Flygon-Admin
-```
+    ```bash
+    pm2 restart Flygon-Admin
+    ```
 
 ## Docker Setup
 
+1. Clone Repo
+
+    ```bash
+    git clone https://github.com/UnownHash/Flygon-Admin.git
+    ```
+
+1. Change Directory to the Repo
+
+    ```bash
+    cd Flygon-Admin
+    ```
+
 1. Copy docker-compose file
 
-```bash
-cp docker-compose.yml docker-compose.override.yml
-```
+    ```bash
+    cp docker-compose.yml docker-compose.override.yml
+    ```
 
-2. Fill out the docker-compose.override.yml file, not the docker-compose.yml file
+1. Fill out the docker-compose.override.yml file, not the docker-compose.yml file
 
-```bash
-nano docker-compose.override.yml
-```
+    ```bash
+    nano docker-compose.override.yml
+    ```
 
-3. Run docker-compose
+1. Run docker-compose
 
-```bash
-docker-compose up -d
-```
+    ```bash
+    docker-compose up -d
+    ```
 
 ### Updating
 
@@ -124,7 +142,7 @@ docker-compose up -d
 ### Pre Requisites
 
 1. Same as above
-2. [gow](https://github.com/bmatzelle/gow) (Recommended)
+1. [gow](https://github.com/bmatzelle/gow) (Recommended)
 
 ### Terminal 1
 
