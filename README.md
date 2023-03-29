@@ -1,4 +1,4 @@
-# FlyGOn Admin
+# Flygon Admin
 
 ## Production
 
@@ -7,35 +7,92 @@
 1. [Go 1.20](https://go.dev/doc/install)
 2. [Node 18](https://nodejs.org/en/download)
 3. [Yarn 1.22](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable)
+4. [Flygon](https://github.com/UnownHash/Flygon)
+5. [Golbat](https://github.com/UnownHash/Golbat) (Optional)
 
 ### Base Setup
 
-1. `cp config.toml.example config.toml`
-2. Fill out the config.toml file
-3. `cd client && yarn install && yarn build`
-4. `cd ../server && go build`
-5. `./server`
+1. Clone Repo
+
+```bash
+git clone https://github.com/UnownHash/Flygon-Admin.git`
+```
+
+2. Create the config file
+
+```bash
+cp config.toml.example config.toml
+```
+
+3. Fill out the config file
+
+```bash
+nano config.toml
+```
+
+4. Compile the client
+
+```bash
+cd client && yarn install && yarn build
+```
+
+5. Compile the server
+
+```bash
+cd ../server && go build
+```
+
+6. Run server
+
+```bash
+./server
+```
 
 ### Docker Setup
 
-1. `cp docker-compose.yml docker-compose.override.yml`
-2. Fill out the docker-compose.override.yml file
-3. `docker-compose up -d`
+1. Copy docker-compose file
+
+```bash
+cp docker-compose.yml docker-compose.override.yml
+```
+
+2. Fill out the docker-compose.override.yml file, not the docker-compose.yml file
+
+```bash
+nano docker-compose.override.yml
+```
+
+3. Run docker-compose
+
+```bash
+`docker-compose up -d`
+```
 
 ## Development
 
 ### Pre Requisites
 
 1. Same as above
-2. Recommended: [gow](https://github.com/bmatzelle/gow)
+2. [gow](https://github.com/bmatzelle/gow) (Recommended)
 
 ### Terminal 1
 
-1. `cd client && yarn install && yarn dev`
+Run the client in dev mode with hot reloading
+
+```bash
+cd client
+yarn install
+yarn dev
+```
 
 ### Terminal 2
 
-1. `cd server && gow run .`
+Run the server in dev mode with file watching
+
+```bash
+cd server
+gow run . # or go run .
+```
 
 ## Config.toml
 

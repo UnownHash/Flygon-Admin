@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"flygon-admin/server/config"
 	"flygon-admin/server/util"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -28,7 +29,13 @@ func getEndpoint(dest string) string {
 }
 
 func buildRequest(dest string, c *gin.Context) (int, string, error) {
-	fullUrl := util.JoinUrl(getEndpoint(dest), c.Request.RequestURI)
+	endpoint := getEndpoint(dest)
+
+	if endpoint == "" {
+		return 500, "", fmt.Errorf("endpoint not found for %s", dest)
+	}
+
+	fullUrl := util.JoinUrl(endpoint, c.Request.RequestURI)
 
 	req, err := http.NewRequest(c.Request.Method, fullUrl, c.Request.Body)
 
