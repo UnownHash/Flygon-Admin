@@ -1,7 +1,7 @@
 version: '2'
 services:
   admin:
-    image: ghcr.io/unownhash/Flygon-Admin:main
+    image: ghcr.io/unownhash/flygon-admin:main
     container_name: admin
     command: './Admin'
     restart: unless-stopped
