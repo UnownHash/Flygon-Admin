@@ -4,6 +4,8 @@ import (
 	"flygon-admin/server/config"
 	"flygon-admin/server/routes"
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/gin-contrib/static"
 	ginlogrus "github.com/toorop/gin-logrus"
@@ -19,9 +21,11 @@ func main() {
 	router.Use(ginlogrus.Logger(log.StandardLogger()), gin.Recovery())
 	router.Use(gin.Recovery())
 
-	router.POST("/auth/login", routes.Login)
-	router.GET("/auth/logout", routes.Logout)
-	router.GET("/auth/status", routes.Status)
+	auth := router.Group("/auth")
+
+	auth.POST("/login", routes.Login)
+	auth.GET("/logout", routes.Logout)
+	auth.GET("/status", routes.Status)
 
 	api := router.Group("/api")
 	api.Use(routes.Middleware())
@@ -47,7 +51,11 @@ func main() {
 
 	addr := fmt.Sprintf("%s:%d", config.SafeGetString("general.host"), config.SafeGetInt("general.port"))
 
-	router.Use(static.Serve("/", static.LocalFile("../dist", false)))
+	path := "./dist"
+	if strings.Contains(os.Getenv("PWD"), "server") {
+		path = "../dist"
+	}
+	router.Use(static.Serve("/", static.LocalFile(path, false)))
 
 	err := router.Run(addr)
 	if err != nil {

@@ -1,6 +1,8 @@
 # Config
 config.toml
 node_modules
+docker-compose.override.yml
+ecosystem.config.js
 
 # Builds
 dist
