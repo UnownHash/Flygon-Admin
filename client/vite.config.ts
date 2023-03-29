@@ -52,6 +52,11 @@ export default defineConfig(({ mode }) => ({
         changeOrigin: true,
         secure: false,
       },
+      '/auth': {
+        target: `http://0.0.0.0:7777`,
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 }))

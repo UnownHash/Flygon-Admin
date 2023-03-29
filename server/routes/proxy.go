@@ -45,8 +45,6 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 		return res.StatusCode, fullUrl, err
 	}
 
-	defer req.Body.Close()
-
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return res.StatusCode, fullUrl, err

@@ -18,7 +18,13 @@ func main() {
 	router := gin.Default()
 	router.Use(ginlogrus.Logger(log.StandardLogger()), gin.Recovery())
 	router.Use(gin.Recovery())
+
+	router.POST("/auth/login", routes.Login)
+	router.GET("/auth/logout", routes.Logout)
+	router.GET("/auth/status", routes.Status)
+
 	api := router.Group("/api")
+	api.Use(routes.Middleware())
 
 	api.GET("/areas/", routes.FlygonProxy)
 	api.GET("/areas/:area_id", routes.FlygonProxy)
