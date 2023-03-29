@@ -4,21 +4,23 @@ import MapIcon from '@mui/icons-material/Map'
 import { Admin, CustomRoutes, Resource } from 'react-admin'
 import { Route } from 'react-router-dom'
 
-import { AreaCreate, AreaEdit, AreaList, AreaShow } from './features/area'
+import { AreaCreate, AreaEdit, AreaList, AreaShow } from '@features/area'
 import {
   AccountCreate,
   AccountEdit,
   AccountImport,
   AccountList,
   AccountShow,
-} from './features/account'
-import { Layout, lightTheme, dataProvider } from './features/admin'
+} from '@features/account'
+import { Layout, lightTheme, dataProvider } from '@features/admin'
+import { authProvider } from '@features/admin/authProvider'
 
 export const App = () => (
   <>
     <CssBaseline />
     <Admin
       dataProvider={dataProvider}
+      authProvider={authProvider}
       layout={Layout}
       title="Flygon"
       disableTelemetry

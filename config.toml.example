@@ -1,6 +1,8 @@
 [general]
 host = "0.0.0.0"
 port = 7777
+username = "admin"
+password = "password"
 
 [flygon]
 api_endpoint = "http://127.0.0.1:9002"
