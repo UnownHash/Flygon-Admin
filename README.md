@@ -1,5 +1,7 @@
 # Flygon Admin
 
+[![Discord](https://img.shields.io/discord/907337201044582452.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/Vjze47qchG)
+
 ## Pre Requisites
 
 1. [Go 1.20](https://go.dev/doc/install)
