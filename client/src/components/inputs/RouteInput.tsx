@@ -1,23 +1,28 @@
-import clsx from 'clsx';
-import TextField from '@mui/material/TextField';
-import { TextInput, useInput, InputHelperText } from 'react-admin';
-import { useMemo } from 'react';
+import clsx from 'clsx'
+import TextField from '@mui/material/TextField'
+import { TextInput, useInput, InputHelperText } from 'react-admin'
+import { useMemo } from 'react'
 
-import { Cords, CordsList } from '@features/area/type';
+import { Cords, CordsList } from '@features/area/type'
 
 const coordsToString = (coords?: CordsList): string =>
-  Array.isArray(coords) ? coords.map((coord) => `${coord.lat},${coord.lon}`).join(`\n`) : '';
+  Array.isArray(coords)
+    ? coords.map((coord) => `${coord.lat},${coord.lon}`).join(`\n`)
+    : ''
 
 const stringToCords = (value: string): CordsList => {
   return value
     .split(`\n`)
     .filter((value) => value !== '')
     .map<Cords>((location) => {
-      const coordinates = location.split(',');
+      const coordinates = location.split(',')
 
-      return { lat: parseFloat(coordinates[0]) || 0, lon: parseFloat(coordinates[1]) || 0 };
-    });
-};
+      return {
+        lat: parseFloat(coordinates[0]) || 0,
+        lon: parseFloat(coordinates[1]) || 0,
+      }
+    })
+}
 
 export const RouteInput: typeof TextInput = ({
   className,
@@ -49,11 +54,11 @@ export const RouteInput: typeof TextInput = ({
     onBlur,
     onChange,
     ...rest,
-  });
+  })
 
   const routeLength = useMemo(() => {
-    return parse(field.value).length;
-  }, [field.value]);
+    return parse(field.value).length
+  }, [field.value])
 
   return (
     <TextField
@@ -63,12 +68,18 @@ export const RouteInput: typeof TextInput = ({
       fullWidth
       multiline
       rows={10}
-      helperText={<InputHelperText touched={isTouched || isSubmitted} error={error?.message} helperText={helperText} />}
+      helperText={
+        <InputHelperText
+          touched={isTouched || isSubmitted}
+          error={error?.message}
+          helperText={helperText}
+        />
+      }
       label={`${label} - ${routeLength} points`}
       required={isRequired}
       {...rest}
     />
-  );
-};
-RouteInput.propTypes = TextInput.propTypes;
-RouteInput.defaultProps = TextInput.defaultProps;
+  )
+}
+RouteInput.propTypes = TextInput.propTypes
+RouteInput.defaultProps = TextInput.defaultProps

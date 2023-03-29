@@ -1,33 +1,35 @@
-import type { LatLngTuple, Map as MapType } from 'leaflet';
-import { useEffect, useMemo, useState } from 'react';
-import { useRecordContext } from 'react-admin';
+import type { LatLngTuple, Map as MapType } from 'leaflet'
+import { useEffect, useMemo, useState } from 'react'
+import { useRecordContext } from 'react-admin'
 
-import { Area, CordsList } from './type';
-import { Map } from '@components/map';
+import { Area, CordsList } from './type'
+import { Map } from '@components/map'
 
 const coordinatesToLatLngTuple = (coords?: CordsList): LatLngTuple[] =>
-  Array.isArray(coords) ? coords.map<LatLngTuple>((coord) => [coord.lat, coord.lon]) : [];
+  Array.isArray(coords)
+    ? coords.map<LatLngTuple>((coord) => [coord.lat, coord.lon])
+    : []
 
 export const MapPreviewField = (): JSX.Element => {
-  const area = useRecordContext<Area>();
+  const area = useRecordContext<Area>()
 
   if (!area) {
-    return <></>;
+    return <></>
   }
 
-  return <MapPreview area={area} />;
-};
+  return <MapPreview area={area} />
+}
 
 interface MapPreviewProps {
   area: Pick<Area, 'geofence'> & {
-    pokemon_mode: Pick<Area['pokemon_mode'], 'route'>;
-    fort_mode: Pick<Area['fort_mode'], 'route'>;
-    quest_mode: Pick<Area['quest_mode'], 'route'>;
-  };
+    pokemon_mode: Pick<Area['pokemon_mode'], 'route'>
+    fort_mode: Pick<Area['fort_mode'], 'route'>
+    quest_mode: Pick<Area['quest_mode'], 'route'>
+  }
 }
 
 export const MapPreview = ({ area }: MapPreviewProps): JSX.Element => {
-  const [map, setMap] = useState<MapType | null>(null);
+  const [map, setMap] = useState<MapType | null>(null)
 
   const geofences = useMemo(
     () => [
@@ -38,7 +40,7 @@ export const MapPreview = ({ area }: MapPreviewProps): JSX.Element => {
       },
     ],
     [area.geofence],
-  );
+  )
 
   const rangeRoutes = useMemo(
     () => [
@@ -56,7 +58,7 @@ export const MapPreview = ({ area }: MapPreviewProps): JSX.Element => {
       },
     ],
     [area.pokemon_mode.route, area.fort_mode.route],
-  );
+  )
 
   const routes = useMemo(
     () =>
@@ -70,17 +72,24 @@ export const MapPreview = ({ area }: MapPreviewProps): JSX.Element => {
           ]
         : [],
     [area.quest_mode.route],
-  );
+  )
 
   useEffect(() => {
     if (!map || geofences[0].values.length === 0) {
-      return;
+      return
     }
 
-    map.fitBounds(geofences[0].values);
-  }, [map, geofences]);
+    map.fitBounds(geofences[0].values)
+  }, [map, geofences])
 
-  return <Map ref={setMap} geofences={geofences} rangeRoutes={rangeRoutes} routes={routes} />;
-};
+  return (
+    <Map
+      ref={setMap}
+      geofences={geofences}
+      rangeRoutes={rangeRoutes}
+      routes={routes}
+    />
+  )
+}
 
-MapPreviewField.defaultProps = { label: 'Preview' };
+MapPreviewField.defaultProps = { label: 'Preview' }

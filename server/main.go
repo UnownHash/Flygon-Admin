@@ -6,10 +6,10 @@ import (
 	"fmt"
 
 	"github.com/gin-contrib/static"
+	ginlogrus "github.com/toorop/gin-logrus"
 
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	ginlogrus "github.com/toorop/gin-logrus"
 )
 
 func main() {
@@ -20,22 +20,24 @@ func main() {
 	router.Use(gin.Recovery())
 	api := router.Group("/api")
 
-	api.GET("/areas/", routes.Flygon)
-	api.GET("/areas/:area_id", routes.Flygon)
-	api.POST("/areas/", routes.Flygon)
-	api.DELETE("/areas/:area_id", routes.Flygon)
-	api.PATCH("/areas/:area_id", routes.Flygon)
+	api.GET("/areas/", routes.FlygonProxy)
+	api.GET("/areas/:area_id", routes.FlygonProxy)
+	api.POST("/areas/", routes.FlygonProxy)
+	api.PATCH("/areas/:area_id", routes.FlygonProxy)
+	api.DELETE("/areas/:area_id", routes.FlygonProxy)
 
-	api.GET("/accounts/", routes.Flygon)
-	api.GET("/accounts/stats", routes.Flygon)
-	api.GET("/accounts/level-stats", routes.Flygon)
-	api.GET("/accounts/:account_name", routes.Flygon)
-	api.POST("/accounts/", routes.Flygon)
-	api.DELETE("/accounts/", routes.Flygon)
-	api.PATCH("/accounts/", routes.Flygon)
-	api.GET("/reload/accounts", routes.Flygon)
+	api.GET("/accounts/", routes.FlygonProxy)
+	api.GET("/accounts/stats", routes.FlygonProxy)
+	api.GET("/accounts/level-stats", routes.FlygonProxy)
+	api.GET("/accounts/:account_name", routes.FlygonProxy)
+	api.POST("/accounts/", routes.FlygonProxy)
+	api.PATCH("/accounts/", routes.FlygonProxy)
+	api.DELETE("/accounts/", routes.FlygonProxy)
 
-	api.GET("/reload", routes.Flygon)
+	api.GET("/reload", routes.FlygonProxy)
+	api.GET("/reload/accounts", routes.FlygonProxy)
+
+	api.POST("/quest-status", routes.GolbatProxy)
 
 	addr := fmt.Sprintf("%s:%d", config.SafeGetString("general.host"), config.SafeGetInt("general.port"))
 

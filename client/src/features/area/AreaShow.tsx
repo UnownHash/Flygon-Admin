@@ -1,8 +1,15 @@
-import { BooleanField, FunctionField, NumberField, Show, SimpleShowLayout, TextField } from 'react-admin';
-import { Typography } from '@mui/material';
+import {
+  BooleanField,
+  FunctionField,
+  NumberField,
+  Show,
+  SimpleShowLayout,
+  TextField,
+} from 'react-admin'
+import { Typography } from '@mui/material'
 
-import { Area } from './type';
-import { MapPreviewField } from './MapPreviewField';
+import { Area } from './type'
+import { MapPreviewField } from './MapPreviewField'
 
 export const AreaShow = () => (
   <Show>
@@ -22,15 +29,18 @@ export const AreaShow = () => (
       <FunctionField<Area>
         label="Quest hours"
         render={(area) => {
-          const hours = area?.quest_mode.hours;
+          const hours = area?.quest_mode.hours
           if (!hours || !Array.isArray(hours) || hours.length < 2) {
-            return '-';
+            return '-'
           }
 
-          return hours.join(',');
+          return hours.join(',')
         }}
       />
-      <NumberField source="quest_mode.max_login_queue" label="Quest max login queue" />
+      <NumberField
+        source="quest_mode.max_login_queue"
+        label="Quest max login queue"
+      />
     </SimpleShowLayout>
   </Show>
-);
+)

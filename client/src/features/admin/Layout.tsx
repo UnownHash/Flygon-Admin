@@ -1,5 +1,7 @@
-import { Layout as BaseLayout } from 'react-admin';
+import { Layout as BaseLayout } from 'react-admin'
 
-import { AppBar } from './AppBar';
+import { AppBar } from './AppBar'
 
-export const Layout: typeof BaseLayout = (props) => <BaseLayout {...props} appBar={AppBar} />;
+export const Layout: typeof BaseLayout = (props) => (
+  <BaseLayout {...props} appBar={AppBar} />
+)
