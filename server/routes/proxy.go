@@ -46,7 +46,7 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 	res, err := httpClient.Do(req)
 
 	if err != nil {
-		return res.StatusCode, fullUrl, err
+		return 500, fullUrl, err
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
@@ -54,6 +54,8 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 		return res.StatusCode, fullUrl, err
 	}
 
+	// Types are not saved here since the request is just being proxied
+	// Reference Flygon & Golbat repos for the full types
 	var data interface{}
 	err = json.Unmarshal(body, &data)
 	if err != nil {
