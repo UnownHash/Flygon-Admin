@@ -1,1 +1,1 @@
-export * from './PixiOverlay';
+export * from './PixiOverlay'

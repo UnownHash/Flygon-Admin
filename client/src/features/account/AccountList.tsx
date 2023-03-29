@@ -12,33 +12,40 @@ import {
   TopToolbar,
   useCreatePath,
   useResourceContext,
-} from 'react-admin';
-import WarningIcon from '@mui/icons-material/Warning';
-import ReportIcon from '@mui/icons-material/Report';
-import UploadIcon from '@mui/icons-material/Upload';
-import PersonOffIcon from '@mui/icons-material/PersonOff';
-import { Link } from 'react-router-dom';
+} from 'react-admin'
+import WarningIcon from '@mui/icons-material/Warning'
+import ReportIcon from '@mui/icons-material/Report'
+import UploadIcon from '@mui/icons-material/Upload'
+import PersonOffIcon from '@mui/icons-material/PersonOff'
+import { Link } from 'react-router-dom'
 
-import { AccountExpand } from './AccountExpand';
-import { LevelStatsTable } from './LevelStats';
+import { AccountExpand } from './AccountExpand'
+import { LevelStatsTable } from './LevelStats'
 
 export const ListActions = () => {
-  const resource = useResourceContext();
-  const createPath = useCreatePath();
+  const resource = useResourceContext()
+  const createPath = useCreatePath()
 
   return (
     <TopToolbar>
-      <Button color="primary" component={Link} to={createPath({ resource, type: 'import' })} label="Batch import">
+      <Button
+        color="primary"
+        component={Link}
+        to={createPath({ resource, type: 'import' })}
+        label="Batch import"
+      >
         <UploadIcon />
       </Button>
       <CreateButton />
     </TopToolbar>
-  );
-};
+  )
+}
 
-const defaultSort = { field: 'username', order: 'ASC' };
+const defaultSort = { field: 'username', order: 'ASC' }
 
-const AccountPagination: typeof Pagination = (props) => <Pagination rowsPerPageOptions={[25, 50, 100]} {...props} />;
+const AccountPagination: typeof Pagination = (props) => (
+  <Pagination rowsPerPageOptions={[25, 50, 100]} {...props} />
+)
 
 export const AccountList = () => {
   return (
@@ -65,5 +72,5 @@ export const AccountList = () => {
         </Datagrid>
       </List>
     </>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
-import { Box, Typography } from '@mui/material';
-import { AppBar as BaseAppBar, ToggleThemeButton } from 'react-admin';
+import { Box, Typography } from '@mui/material'
+import { AppBar as BaseAppBar, ToggleThemeButton } from 'react-admin'
 
-import { darkTheme, lightTheme } from './themes';
+import { darkTheme, lightTheme } from './themes'
 
 export const AppBar: typeof BaseAppBar = (props) => (
   <BaseAppBar {...props}>
@@ -10,4 +10,4 @@ export const AppBar: typeof BaseAppBar = (props) => (
     </Box>
     <ToggleThemeButton lightTheme={lightTheme} darkTheme={darkTheme} />
   </BaseAppBar>
-);
+)

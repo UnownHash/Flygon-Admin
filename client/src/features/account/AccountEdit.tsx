@@ -1,11 +1,17 @@
-import { Edit, useNotify, useRedirect } from 'react-admin';
+import { Edit, useNotify, useRedirect } from 'react-admin'
 
-import { AccountForm } from './AccountForm';
-import { Account } from './type';
+import { AccountForm } from './AccountForm'
+import { Account } from './type'
 
 const transformPayload = (
-  { username: new_username, password: new_password, level }: Pick<Account, 'username' | 'password' | 'level'>,
-  options: { previousData: Pick<Account, 'username' | 'password' | 'level'> } | undefined,
+  {
+    username: new_username,
+    password: new_password,
+    level,
+  }: Pick<Account, 'username' | 'password' | 'level'>,
+  options:
+    | { previousData: Pick<Account, 'username' | 'password' | 'level'> }
+    | undefined,
 ) => {
   return {
     accounts: [
@@ -16,21 +22,25 @@ const transformPayload = (
       },
     ],
     default_level: level,
-  };
-};
+  }
+}
 
 export const AccountEdit = () => {
-  const notify = useNotify();
-  const redirect = useRedirect();
+  const notify = useNotify()
+  const redirect = useRedirect()
 
   const onSuccess = () => {
-    notify('Account edited successfully');
-    redirect('list', 'accounts');
-  };
+    notify('Account edited successfully')
+    redirect('list', 'accounts')
+  }
 
   return (
-    <Edit transform={transformPayload} mutationOptions={{ onSuccess }} mutationMode="pessimistic">
+    <Edit
+      transform={transformPayload}
+      mutationOptions={{ onSuccess }}
+      mutationMode="pessimistic"
+    >
       <AccountForm />
     </Edit>
-  );
-};
+  )
+}

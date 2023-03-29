@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material';
-import { defaultTheme } from 'react-admin';
+import { createTheme } from '@mui/material'
+import { defaultTheme } from 'react-admin'
 
 export const lightTheme = {
   ...defaultTheme,
@@ -12,7 +12,7 @@ export const lightTheme = {
       light: '#ffac33',
     },
   },
-};
+}
 export const darkTheme = createTheme({
   palette: { mode: 'dark' },
-});
+})

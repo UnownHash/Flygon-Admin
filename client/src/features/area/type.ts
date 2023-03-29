@@ -1,40 +1,40 @@
 export interface Cords {
-  lat: number;
-  lon: number;
+  lat: number
+  lon: number
 }
 
-export type CordsList = Cords[];
+export type CordsList = Cords[]
 
 interface ScanningMode {
-  workers: number;
-  route: CordsList;
+  workers: number
+  route: CordsList
 }
 
 interface QuestCheck {
-  location: Cords;
-  pokestops: string[];
+  location: Cords
+  pokestops: string[]
 }
 
 interface QuestScanningMode extends ScanningMode {
-  checks: QuestCheck[];
-  hours?: number[];
-  max_login_queue: number | null;
+  checks: QuestCheck[]
+  hours?: number[]
+  max_login_queue: number | null
 }
 
 export interface Area {
-  enable_quests: boolean;
-  fort_mode: ScanningMode;
-  geofence?: CordsList;
-  id: number;
-  name: string;
-  pokemon_mode: ScanningMode;
-  quest_mode: QuestScanningMode;
+  enable_quests: boolean
+  fort_mode: ScanningMode
+  geofence?: CordsList
+  id: number
+  name: string
+  pokemon_mode: ScanningMode
+  quest_mode: QuestScanningMode
 }
 
 export interface QuestStatus {
-  quests: number;
-  alt_quests: number;
-  total: number;
+  quests: number
+  alt_quests: number
+  total: number
 }
 
 export type RecursivePartial<T> = {
@@ -42,7 +42,7 @@ export type RecursivePartial<T> = {
     ? RecursivePartial<U>[]
     : T[P] extends object
     ? RecursivePartial<T[P]>
-    : T[P];
-};
+    : T[P]
+}
 
-export type AreaDTO = RecursivePartial<Area> & { name: string };
+export type AreaDTO = RecursivePartial<Area> & { name: string }
