@@ -1,8 +1,6 @@
 # Flygon Admin
 
-## Production
-
-### Pre Requisites
+## Pre Requisites
 
 1. [Go 1.20](https://go.dev/doc/install)
 2. [Node 18](https://nodejs.org/en/download)
@@ -10,7 +8,7 @@
 4. [Flygon](https://github.com/UnownHash/Flygon)
 5. [Golbat](https://github.com/UnownHash/Golbat) (Optional)
 
-### Base Setup
+## Standard Setup
 
 1. Clone Repo
 
@@ -51,14 +49,47 @@ go build
 ./server
 ```
 
-**Updating** 
+### Updating
+
 1. Pull repo
+
 ```bash
 git pull
 ```
+
 2. Repeat steps 4-6 above
 
-### Docker Setup
+## PM2 Setup
+
+1. Install PM2
+
+```bash
+npm install pm2 -g
+```
+
+2. Follow steps 1-5 above
+3. From the `server` directory, add to PM2:
+
+```bash
+pm2 start server --name "Flygon Admin"
+```
+
+4. Save PM2 processes
+
+```bash
+pm2 save
+```
+
+### Updating
+
+1. Recompile the client and server as above
+2. Restart PM2 process
+
+```bash
+pm2 restart Flygon Admin
+```
+
+## Docker Setup
 
 1. Copy docker-compose file
 
@@ -78,9 +109,10 @@ nano docker-compose.override.yml
 docker-compose up -d
 ```
 
-**Updating**
+### Updating
+
 ```bash
-docker-compose pull 
+docker-compose pull
 docker-compose down
 docker-compose up -d
 ```
@@ -109,22 +141,4 @@ Run the server in dev mode with file watching
 ```bash
 cd server
 gow run . # or go run .
-```
-
-## Config.toml
-
-```toml
-[general]
-host = "0.0.0.0"        # host address
-port = 9003             # host port
-username = "admin"      # username for login
-password = "password"   # password for login
-
-[flygon]                # Flygon API Settings
-api_endpoint = "http://127.0.0.1:9002"
-api_secret = ""
-
-[golbat]                # Golbat API Settings
-api_endpoint = "http://127.0.0.1:9001"
-api_secret = ""
 ```
