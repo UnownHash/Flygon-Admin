@@ -20,7 +20,7 @@ import PersonOffIcon from '@mui/icons-material/PersonOff'
 import { Link } from 'react-router-dom'
 
 import { AccountExpand } from './AccountExpand'
-import { LevelStatsTable } from './LevelStats'
+import { AccountStatsTable } from './AccountStats'
 
 export const ListActions = () => {
   const resource = useResourceContext()
@@ -50,7 +50,7 @@ const AccountPagination: typeof Pagination = (props) => (
 export const AccountList = () => {
   return (
     <>
-      <LevelStatsTable />
+      <AccountStatsTable />
       <List
         pagination={<AccountPagination />}
         title="Accounts"

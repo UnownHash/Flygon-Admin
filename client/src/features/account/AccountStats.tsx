@@ -25,7 +25,7 @@ import SquareFootIcon from '@mui/icons-material/SquareFoot'
 
 import type { LevelStats } from './type'
 
-export const TableHeader = ({ secondary = false }: { secondary?: boolean }) => (
+const TableHeader = ({ secondary = false }: { secondary?: boolean }) => (
   <TableHead>
     <TableRow>
       <TableCell align="center">
@@ -104,7 +104,7 @@ export const TableHeader = ({ secondary = false }: { secondary?: boolean }) => (
   </TableHead>
 )
 
-export const Row = ({
+const Row = ({
   row,
   children,
   label,
@@ -124,7 +124,7 @@ export const Row = ({
                 size="small"
                 disabled={!children.length}
                 onClick={() => setOpen(!open)}
-                sx={{ flexGrow: 0 }}
+                sx={{ flexGrow: 0, '&:disabled': { color: 'transparent' } }}
               >
                 {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
@@ -149,7 +149,7 @@ export const Row = ({
       </TableRow>
       {!!children && (
         <TableRow>
-          <TableCell sx={{ p: 0 }} colSpan={8}>
+          <TableCell sx={{ padding: 0 }} colSpan={8}>
             <Collapse in={open} timeout="auto" unmountOnExit>
               <Table>
                 <TableHeader secondary />
@@ -163,7 +163,7 @@ export const Row = ({
   )
 }
 
-export const LevelStatsTable = () => {
+export const AccountStatsTable = () => {
   const { data } = useQuery<LevelStats[]>(
     ['levelstats'],
     () => fetch(`/api/accounts/level-stats`).then((res) => res.json()),
@@ -205,9 +205,14 @@ export const LevelStatsTable = () => {
                 invalid: 0,
               },
             )
+            const levels = new Set(filtered.map((x) => x.level))
             return summary ? (
-              <Row key={label} label={label} row={summary}>
-                {new Set(filtered.map((x) => x.level)).size > 1
+              <Row
+                key={label}
+                label={levels.size === 1 ? `${[...levels][0]}` : label}
+                row={summary}
+              >
+                {levels.size > 1
                   ? filtered
                       .sort((a, b) => a.level - b.level)
                       .map((row) => (
