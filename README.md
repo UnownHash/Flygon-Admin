@@ -57,7 +57,7 @@ go build
 git pull
 ```
 
-2. Repeat steps 4-6 above
+2. Repeat steps 4-6 from the [standard setup](#standard-setup)
 
 ## PM2 Setup
 
@@ -67,7 +67,7 @@ git pull
 npm install pm2 -g
 ```
 
-2. Follow steps 1-5 above
+2. Follow steps 1-5 from the [standard setup](#standard-setup)
 3. From the `server` directory, add to PM2:
 
 ```bash
@@ -82,7 +82,7 @@ pm2 save
 
 ### Updating
 
-1. Recompile the client and server as above
+1. Follow steps 4-5 from the [standard setup](#standard-setup)
 2. Restart PM2 process
 
 ```bash
