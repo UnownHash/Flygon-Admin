@@ -71,7 +71,7 @@ npm install pm2 -g
 3. From the `server` directory, add to PM2:
 
 ```bash
-pm2 start server --name "Flygon Admin"
+pm2 start server --name "Flygon-Admin"
 ```
 
 4. Save PM2 processes
@@ -86,7 +86,7 @@ pm2 save
 2. Restart PM2 process
 
 ```bash
-pm2 restart Flygon Admin
+pm2 restart Flygon-Admin
 ```
 
 ## Docker Setup
