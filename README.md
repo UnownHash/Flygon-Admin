@@ -75,7 +75,7 @@ nano docker-compose.override.yml
 3. Run docker-compose
 
 ```bash
-`docker-compose up -d`
+docker-compose up -d
 ```
 
 **Updating**
