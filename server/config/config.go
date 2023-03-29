@@ -25,6 +25,7 @@ func ReadConfig() {
 	viper.SetConfigType("toml")
 	viper.AddConfigPath("../")
 
+	viper.SetEnvPrefix("admin")
 	viper.AutomaticEnv()
 
 	stringReplacer := strings.NewReplacer(".", "_")
