@@ -1,4 +1,5 @@
-name: Docker
+name: docker
+
 on: [push]
 
 env:
@@ -6,23 +7,25 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  Docker:
+  build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Log in to the Container registry
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
