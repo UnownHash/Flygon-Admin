@@ -42,18 +42,18 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: '0.0.0.0',
     open: true,
-    port: 7778,
+    port: 9004,
     fs: {
       strict: false,
     },
     proxy: {
       '/api': {
-        target: `http://0.0.0.0:7777`,
+        target: `http://0.0.0.0:9003`,
         changeOrigin: true,
         secure: false,
       },
       '/auth': {
-        target: `http://0.0.0.0:7777`,
+        target: `http://0.0.0.0:9003`,
         changeOrigin: true,
         secure: false,
       },

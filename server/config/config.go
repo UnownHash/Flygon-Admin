@@ -9,7 +9,7 @@ import (
 
 func setDefaults() {
 	viper.SetDefault("general.host", "0.0.0.0")
-	viper.SetDefault("general.port", 7777)
+	viper.SetDefault("general.port", 9003)
 	viper.SetDefault("general.username", "")
 	viper.SetDefault("general.password", "")
 
