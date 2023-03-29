@@ -25,9 +25,7 @@ interface Config {
 export default defineConfig(({ mode }) => {
   const config: Config = fs.existsSync(resolve(__dirname, '../config.toml'))
     ? toml.parse(fs.readFileSync(resolve(__dirname, '../config.toml'), 'utf-8'))
-    : toml.parse(
-        fs.readFileSync(resolve(__dirname, '../config.toml.example'), 'utf-8'),
-      )
+    : {}
   const host = config?.general?.host || '0.0.0.0'
   const port = config?.general?.port || 9003
 
