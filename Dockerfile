@@ -12,3 +12,4 @@ RUN cd server && go build -o Admin
 FROM golang:1.20.2-alpine3.17
 COPY --from=client /app/dist ./dist
 COPY --from=server /app/server/Admin Admin
+CMD ["./Admin"]
