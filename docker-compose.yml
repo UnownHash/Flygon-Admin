@@ -3,7 +3,6 @@ services:
   admin:
     image: ghcr.io/unownhash/flygon-admin:main
     container_name: admin
-    command: './Admin'
     restart: unless-stopped
     environment:
       ADMIN_GENERAL_USERNAME: admin
