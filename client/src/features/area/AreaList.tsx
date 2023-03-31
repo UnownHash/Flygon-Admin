@@ -22,20 +22,14 @@ const ListActions = () => (
   </TopToolbar>
 )
 
-const defaultSort = { field: 'id', order: 'ASC' }
-
-const AreaPagination: typeof Pagination = (props) => (
-  <Pagination rowsPerPageOptions={[25, 50, 100]} {...props} />
-)
-
 export const AreaList = () => {
   return (
     <List
-      pagination={<AreaPagination />}
+      pagination={<Pagination rowsPerPageOptions={[25, 50, 100]} />}
       title="Areas"
       actions={<ListActions />}
       perPage={25}
-      sort={defaultSort}
+      sort={{ field: 'id', order: 'ASC' }}
     >
       <Datagrid
         rowClick="expand"

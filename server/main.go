@@ -44,6 +44,8 @@ func main() {
 	api.PATCH("/accounts/", routes.FlygonProxy)
 	api.DELETE("/accounts/", routes.FlygonProxy)
 
+	api.GET("/workers/", routes.FlygonProxy)
+
 	api.GET("/reload", routes.FlygonProxy)
 	api.GET("/reload/accounts", routes.FlygonProxy)
 
