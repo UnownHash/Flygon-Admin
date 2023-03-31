@@ -1,6 +1,7 @@
 import CssBaseline from '@mui/material/CssBaseline'
 import GroupIcon from '@mui/icons-material/Group'
 import MapIcon from '@mui/icons-material/Map'
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone'
 import { Admin, CustomRoutes, Resource } from 'react-admin'
 import { Route } from 'react-router-dom'
 
@@ -14,6 +15,7 @@ import {
 } from '@features/account'
 import { Layout, lightTheme, dataProvider } from '@features/admin'
 import { authProvider } from '@features/admin/authProvider'
+import { WorkerList } from '@features/workers'
 
 export const App = () => (
   <>
@@ -45,6 +47,7 @@ export const App = () => (
         create={AreaCreate}
         show={AreaShow}
       />
+      <Resource name="workers" icon={PhoneIphoneIcon} list={WorkerList} />
     </Admin>
   </>
 )

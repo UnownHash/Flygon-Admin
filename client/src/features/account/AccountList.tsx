@@ -41,22 +41,16 @@ export const ListActions = () => {
   )
 }
 
-const defaultSort = { field: 'username', order: 'ASC' }
-
-const AccountPagination: typeof Pagination = (props) => (
-  <Pagination rowsPerPageOptions={[25, 50, 100]} {...props} />
-)
-
 export const AccountList = () => {
   return (
     <>
       <AccountStatsTable />
       <List
-        pagination={<AccountPagination />}
+        pagination={<Pagination rowsPerPageOptions={[25, 50, 100]} />}
         title="Accounts"
         actions={<ListActions />}
         perPage={25}
-        sort={defaultSort}
+        sort={{ field: 'username', order: 'ASC' }}
         empty={false}
       >
         <Datagrid rowClick="expand" expand={<AccountExpand />}>
