@@ -57,6 +57,7 @@ export const AccountList = () => {
         actions={<ListActions />}
         perPage={25}
         sort={defaultSort}
+        empty={false}
       >
         <Datagrid rowClick="expand" expand={<AccountExpand />}>
           <TextField source="username" />
