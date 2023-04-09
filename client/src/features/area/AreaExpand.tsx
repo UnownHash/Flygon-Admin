@@ -16,11 +16,12 @@ export const AreaExpand = () => {
     }).then((res) => res.json()),
   )
 
+  console.log(data)
   return (
     <div>
       <Typography variant="caption">
-        Total Pokéstops: {data?.total || 0} | Quests Found: {data?.quests || 0}{' '}
-        | Alt Quests Found: {data?.alt_quests || 0}
+        Total Pokéstops: {data?.total || 0} | AR Quests Found:{' '}
+        {data?.ar_quests || 0} | No AR Quests Found: {data?.no_ar_quests || 0}
       </Typography>
     </div>
   )

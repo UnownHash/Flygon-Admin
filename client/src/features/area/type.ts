@@ -32,8 +32,8 @@ export interface Area {
 }
 
 export interface QuestStatus {
-  quests: number
-  alt_quests: number
+  ar_quests: number
+  no_ar_quests: number
   total: number
 }
 

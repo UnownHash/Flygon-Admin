@@ -13,7 +13,7 @@ import {
   AccountList,
   AccountShow,
 } from '@features/account'
-import { Layout, lightTheme, dataProvider } from '@features/admin'
+import { Layout, dataProvider, darkTheme } from '@features/admin'
 import { authProvider } from '@features/admin/authProvider'
 import { WorkerList } from '@features/workers'
 
@@ -26,7 +26,7 @@ export const App = () => (
       layout={Layout}
       title="Flygon"
       disableTelemetry
-      theme={lightTheme}
+      theme={darkTheme}
     >
       <Resource
         name="accounts"
