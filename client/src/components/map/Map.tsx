@@ -33,4 +33,5 @@ export const Map = memo(
     },
   ),
 )
+
 Map.displayName = 'Map'

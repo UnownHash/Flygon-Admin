@@ -4,8 +4,6 @@ import (
 	"flygon-admin/server/config"
 	"flygon-admin/server/routes"
 	"fmt"
-	"os"
-	"strings"
 
 	"github.com/gin-contrib/static"
 	ginlogrus "github.com/toorop/gin-logrus"
@@ -53,11 +51,8 @@ func main() {
 
 	addr := fmt.Sprintf("%s:%d", config.SafeGetString("general.host"), config.SafeGetInt("general.port"))
 
-	path := "./dist"
-	if strings.Contains(os.Getenv("PWD"), "server") {
-		path = "../dist"
-	}
-	router.Use(static.Serve("/", static.LocalFile(path, false)))
+	router.Use(static.Serve("/", static.LocalFile("./dist/client", false)))
+	log.Infof("Listening on %s", addr)
 
 	err := router.Run(addr)
 	if err != nil {

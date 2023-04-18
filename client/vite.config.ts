@@ -33,17 +33,21 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       splitVendorChunkPlugin(),
-      checker({
-        overlay: {
-          initialIsOpen: false,
-        },
-        typescript: {
-          tsconfigPath: resolve(__dirname, 'tsconfig.json'),
-        },
-        eslint: {
-          lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
-        },
-      }),
+      ...(mode === 'development'
+        ? [
+            checker({
+              overlay: {
+                initialIsOpen: false,
+              },
+              typescript: {
+                tsconfigPath: resolve(__dirname, 'tsconfig.json'),
+              },
+              eslint: {
+                lintCommand: 'eslint "./src/**/*.{ts,tsx}"',
+              },
+            }),
+          ]
+        : []),
     ],
     publicDir: 'public',
     resolve: {
