@@ -5,7 +5,7 @@ COPY ./yarn.lock ./yarn.lock
 COPY ./.eslintrc.json ./.eslintrc.json
 COPY ./client ./client
 RUN yarn install
-RUN yarn build
+RUN yarn build:client
 
 FROM golang:1.20.2-alpine3.17 as server
 WORKDIR /app

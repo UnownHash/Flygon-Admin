@@ -11,6 +11,8 @@
   },
   "scripts": {
     "build": "nx run-many --target=build --configuration=production --all",
+    "build:client": "nx run client:build:production",
+    "build:server": "nx run server:build:production",
     "dev": "nx run-many --target=dev --configuration=development --all",
     "dev:client": "nx run client:dev:development",
     "dev:server": "nx run server:dev:development",
