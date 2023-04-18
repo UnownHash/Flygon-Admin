@@ -15,8 +15,6 @@ export const AreaExpand = () => {
       body: JSON.stringify({ fence: record.geofence }),
     }).then((res) => res.json()),
   )
-
-  console.log(data)
   return (
     <div>
       <Typography variant="caption">

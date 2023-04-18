@@ -3,7 +3,6 @@ package routes
 import (
 	"encoding/json"
 	"flygon-admin/server/config"
-	"io/ioutil"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,14 +13,12 @@ type Auth struct {
 }
 
 func Login(c *gin.Context) {
-	body, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		c.JSON(500, gin.H{"error": err.Error()})
-		return
-	}
+
+	defer c.Request.Body.Close()
 
 	var data Auth
-	err = json.Unmarshal(body, &data)
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
+
 	if err != nil {
 		c.JSON(500, gin.H{"error": err.Error()})
 		return

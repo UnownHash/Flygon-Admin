@@ -5,7 +5,6 @@ import (
 	"flygon-admin/server/config"
 	"flygon-admin/server/util"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strings"
 
@@ -56,20 +55,17 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 		return 500, fullUrl, err
 	}
 
-	body, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		return res.StatusCode, fullUrl, err
-	}
+	defer res.Body.Close()
 
 	// Types are not saved here since the request is just being proxied
 	// Reference Flygon & Golbat repos for the full types
-	var data interface{}
-	err = json.Unmarshal(body, &data)
+	var body interface{}
+	err = json.NewDecoder(res.Body).Decode(&body)
 	if err != nil {
 		return res.StatusCode, fullUrl, err
 	}
 
-	c.JSON(res.StatusCode, data)
+	c.JSON(res.StatusCode, body)
 	return res.StatusCode, fullUrl, nil
 }
 
