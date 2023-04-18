@@ -38,7 +38,7 @@ export const Polyline = ({ positions, pathOptions }: PolylineInterface) => {
     positions.forEach((coords, index) => {
       const projectedCoords = project(coords)
 
-      if (index == 0) {
+      if (index === 0) {
         polyline.moveTo(projectedCoords.x, projectedCoords.y)
       } else {
         polyline.lineTo(projectedCoords.x, projectedCoords.y)

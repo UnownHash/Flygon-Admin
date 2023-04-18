@@ -1,0 +1,109 @@
+{
+  "name": "server",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "server",
+  "implicitDependencies": [
+    "client"
+  ],
+  "namedInputs": {
+    "package.json": [
+      "{projectRoot}/package.json"
+    ],
+    "go.mod": [
+      "{workspaceRoot}/go.mod"
+    ]
+  },
+  "targets": {
+    "prebuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "mkdir -p dist/server",
+          "cp server/package.json dist/server"
+        ]
+      },
+      "inputs": [
+        "package.json"
+      ],
+      "outputs": [
+        "dist/server/package.json"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "prebuild"
+      ],
+      "executor": "@nx-go/nx-go:build",
+      "inputs": [
+        "go.mod"
+      ],
+      "options": {
+        "outputPath": "dist/server",
+        "main": "flygon-admin/server"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "./dist/server/server"
+        ]
+      }
+    },
+    "dev": {
+      "executor": "@nx-go/nx-go:serve",
+      "options": {
+        "cmd": "APP_ENV=dev gow",
+        "cwd": ".",
+        "main": "flygon-admin/server"
+      }
+    },
+    "lint": {
+      "executor": "@nx-go/nx-go:lint"
+    },
+    "docker": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "build"
+        }
+      ],
+      "options": {
+        "push": true,
+        "metadata": {
+          "images": [
+            "ghcr.io/unownhash/Flygon-Admin"
+          ],
+          "labels": [
+            "org.opencontainers.image.title=Flygon-Admin",
+            "org.opencontainers.image.description=Flygon Admin Panel",
+            "org.opencontainers.image.licenses=MIT"
+          ],
+          "tags": [
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=semver,pattern=v{{version}}",
+            "type=semver,pattern=v{{major}}",
+            "type=sha"
+          ]
+        }
+      }
+    },
+    "release": {
+      "dependsOn": [
+        "prebuild"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "pnpm exec semantic-release-plus --ci"
+        ],
+        "cwd": "server/"
+      }
+    }
+  },
+  "tags": []
+}

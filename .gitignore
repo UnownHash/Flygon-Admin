@@ -7,3 +7,6 @@ ecosystem.config.js
 # Builds
 dist
 /server/server
+
+.nx/installation
+.nx/cache

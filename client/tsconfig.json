@@ -17,7 +17,7 @@
 			"ESNext",
 			"dom"
 		],
-    "jsx": "react-jsx",
+		"jsx": "react-jsx",
 		"strict": true,
 		"sourceMap": true,
 		"target": "ESNext",

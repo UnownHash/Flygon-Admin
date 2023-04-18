@@ -47,7 +47,7 @@ export const Polygon = ({ positions, pathOptions }: PolygonInterface) => {
     positions.forEach((coords, index) => {
       const projectedCoords = project(coords)
 
-      if (index == 0) {
+      if (index === 0) {
         polygon.moveTo(projectedCoords.x, projectedCoords.y)
       } else {
         polygon.lineTo(projectedCoords.x, projectedCoords.y)
