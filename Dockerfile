@@ -1,5 +1,8 @@
 FROM node:18-alpine as client
 WORKDIR /app
+COPY ./package.json ./package.json
+COPY ./yarn.lock ./yarn.lock
+COPY ./eslintrc.json ./eslintrc.json
 COPY ./client ./client
 RUN yarn install
 RUN yarn build
