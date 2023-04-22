@@ -46,3 +46,26 @@ export type RecursivePartial<T> = {
 }
 
 export type AreaDTO = RecursivePartial<Area> & { name: string }
+
+export interface KojiOptions {
+  category?: 'pokestop' | 'gym' | 'pokemon' | 'fort'
+  cluster_mode?: 'Fast' | 'Balanced' | 'BruteForce'
+  tth?: 'All' | 'Known' | 'Unknown'
+  sort_by?: 'GeoHash' | 'Random' | 'ClusterCount'
+  radius?: number
+  fast?: boolean
+  min_points?: number
+  route_split_level?: number
+  cluster_split_level?: number
+  calculation_mode?: 'Radius' | 'S2'
+  s2_level?: number
+  s2_size?: number
+}
+
+export interface KojiResponse<T = { lat: number; lon: number }[]> {
+  data: T
+  status_code: number
+  status: string
+  message: string
+  stats: null
+}

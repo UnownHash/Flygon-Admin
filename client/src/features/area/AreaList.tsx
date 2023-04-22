@@ -15,6 +15,7 @@ import {
 
 // import { Area } from './type'
 import { AreaExpand } from './AreaExpand'
+import { KojiMenuButton } from './Koji'
 
 const ListActions = () => (
   <TopToolbar>
@@ -57,6 +58,7 @@ export const AreaList = () => {
         /> */}
         <EditButton />
         <DeleteWithUndoButton />
+        <KojiMenuButton />
       </Datagrid>
     </List>
   )

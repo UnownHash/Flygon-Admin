@@ -1,10 +1,12 @@
 package routes
 
 import (
+	"compress/gzip"
 	"encoding/json"
 	"flygon-admin/server/config"
 	"flygon-admin/server/util"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 
@@ -17,12 +19,18 @@ func getSecret(dest string) (string, string) {
 	if dest == "flygon" {
 		return "X-FlyGOn-Secret", config.SafeGetString("flygon.api_secret")
 	}
+	if dest == "koji" {
+		return "Authorization", fmt.Sprintf("Bearer %s", config.SafeGetString("koji.bearer_token"))
+	}
 	return "X-Golbat-Secret", config.SafeGetString("golbat.api_secret")
 }
 
 func getEndpoint(dest string) string {
 	if dest == "flygon" {
 		return config.SafeGetString("flygon.api_endpoint")
+	}
+	if dest == "koji" {
+		return config.SafeGetString("koji.api_endpoint")
 	}
 	return config.SafeGetString("golbat.api_endpoint")
 }
@@ -45,6 +53,7 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 	req.Header.Set(getSecret(dest))
 
 	for header := range c.Request.Header {
+		log.Infof("Setting header %s to %s", header, c.Request.Header.Get(header))
 		req.Header.Set(header, c.Request.Header.Get(header))
 	}
 
@@ -58,11 +67,29 @@ func buildRequest(dest string, c *gin.Context) (int, string, error) {
 	defer res.Body.Close()
 
 	// Types are not saved here since the request is just being proxied
-	// Reference Flygon & Golbat repos for the full types
+	// Reference Flygon, Golbat, and Koji repos for the full types
 	var body interface{}
-	err = json.NewDecoder(res.Body).Decode(&body)
-	if err != nil {
-		return res.StatusCode, fullUrl, err
+
+	if res.Header.Get("Content-Encoding") == "gzip" {
+		reader, err := gzip.NewReader(res.Body)
+		if err != nil {
+			return res.StatusCode, fullUrl, err
+		}
+		defer reader.Close()
+
+		zippedBody, err := io.ReadAll(reader)
+		if err != nil {
+			panic(err)
+		}
+		err = json.Unmarshal(zippedBody, &body)
+		if err != nil {
+			return res.StatusCode, fullUrl, err
+		}
+	} else {
+		err = json.NewDecoder(res.Body).Decode(&body)
+		if err != nil {
+			return res.StatusCode, fullUrl, err
+		}
 	}
 
 	c.JSON(res.StatusCode, body)
@@ -83,4 +110,8 @@ func FlygonProxy(c *gin.Context) {
 
 func GolbatProxy(c *gin.Context) {
 	buildProxy("golbat", c)
+}
+
+func KojiProxy(c *gin.Context) {
+	buildProxy("koji", c)
 }

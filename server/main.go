@@ -49,6 +49,11 @@ func main() {
 
 	api.POST("/quest-status", routes.GolbatProxy)
 
+	api.POST("/v1/calc/bootstrap", routes.KojiProxy)
+	api.POST("/v1/calc/route/spawnpoint", routes.KojiProxy)
+	api.POST("/v1/calc/route/pokestop", routes.KojiProxy)
+	api.POST("/v1/calc/route/gym", routes.KojiProxy)
+
 	addr := fmt.Sprintf("%s:%d", config.SafeGetString("general.host"), config.SafeGetInt("general.port"))
 
 	router.Use(static.Serve("/", static.LocalFile("./dist/client", false)))

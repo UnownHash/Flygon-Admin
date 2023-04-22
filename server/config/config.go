@@ -18,6 +18,9 @@ func setDefaults() {
 
 	viper.SetDefault("flygon.api_endpoint", "http://127.0.0.1:9002")
 	viper.SetDefault("flygon.api_secret", "")
+
+	viper.SetDefault("koji.api_endpoint", "http://127.0.0.1:8080")
+	viper.SetDefault("koji.bearer_token", "")
 }
 
 func ReadConfig() {
