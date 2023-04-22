@@ -43,28 +43,29 @@ export const SendKojiRequest = ({
     },
     {
       onSuccess: (resp: KojiResponse) => {
-        console.log(resp)
-        update(
-          'areas',
-          {
-            id: area.id,
-            data: {
-              ...area,
-              [field]: {
-                ...area[field],
-                route: resp.data,
+        if (resp?.data) {
+          update(
+            'areas',
+            {
+              id: area.id,
+              data: {
+                ...area,
+                [field]: {
+                  ...area[field],
+                  route: resp.data,
+                },
               },
+              previousData: area,
             },
-            previousData: area,
-          },
-          {
-            onError: () =>
-              notify(`Kōji request failed for ${area.name} - ${error}`, {
-                type: 'error',
-              }),
-          },
-        )
-        notify(`Kōji Request sent for ${area.name}`, { type: 'success' })
+            {
+              onError: () =>
+                notify(`Kōji request failed for ${area.name} - ${error}`, {
+                  type: 'error',
+                }),
+            },
+          )
+          notify(`Kōji Request sent for ${area.name}`, { type: 'success' })
+        }
       },
       onError: () => {
         notify(`Kōji request failed for ${area.name}`, { type: 'error' })
