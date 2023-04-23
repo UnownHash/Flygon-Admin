@@ -11,3 +11,7 @@ api_secret = ""
 [golbat]
 api_endpoint = "http://127.0.0.1:9001"
 api_secret = ""
+
+[koji]
+api_endpoint = "http://127.0.0.1:8080"
+bearer_token = ""
