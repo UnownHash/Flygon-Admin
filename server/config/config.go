@@ -13,13 +13,13 @@ func setDefaults() {
 	viper.SetDefault("general.username", "")
 	viper.SetDefault("general.password", "")
 
-	viper.SetDefault("golbat.api_endpoint", "http://127.0.0.1:9001")
+	viper.SetDefault("golbat.api_endpoint", "")
 	viper.SetDefault("golbat.api_secret", "")
 
-	viper.SetDefault("flygon.api_endpoint", "http://127.0.0.1:9002")
+	viper.SetDefault("flygon.api_endpoint", "")
 	viper.SetDefault("flygon.api_secret", "")
 
-	viper.SetDefault("koji.api_endpoint", "http://127.0.0.1:8080")
+	viper.SetDefault("koji.api_endpoint", "")
 	viper.SetDefault("koji.bearer_token", "")
 }
 

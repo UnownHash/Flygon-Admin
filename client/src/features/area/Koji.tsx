@@ -90,6 +90,7 @@ export const KojiMenuButton = ({ bulk = false }: { bulk?: boolean }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation()
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
