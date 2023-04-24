@@ -28,7 +28,9 @@ export const WorkerList = () => {
           label="Location"
           render={(record) => {
             if (!record) return null
-            return `${record.step || 0}/${record.end_step || 0}`
+            const totalLength = (record.end_step || 0) - (record.step || 0)
+            const currentPos = (record.step || 0)
+            return `${currentPos}/${totalLength}`
           }}
         />
         <TextField source="username" />
