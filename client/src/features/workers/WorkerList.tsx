@@ -6,11 +6,22 @@ import {
   Pagination,
   ReferenceField,
   TextField,
+  useRefresh,
 } from 'react-admin'
 
 import { Worker } from './type'
+import { useEffect } from 'react'
 
 export const WorkerList = () => {
+  const refresh = useRefresh()
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      refresh()
+    }, 2000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <List
       pagination={<Pagination rowsPerPageOptions={[25, 50, 100]} />}
