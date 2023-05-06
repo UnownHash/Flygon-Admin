@@ -25,7 +25,7 @@ export const AreaTable = ({
       defaultExpanded
       disableGutters
       disabled={!workers.length}
-      expanded={!!expanded}
+      expanded={!!(expanded && workers.length)}
       onChange={onChange}
       TransitionProps={{ unmountOnExit: true }}
     >
@@ -49,6 +49,7 @@ export const MemoAreaTable = memo(
   AreaTable,
   (prev, next) =>
     !next.workers.length &&
+    prev.expanded === next.expanded &&
     prev.workers.every(
       (w, i) =>
         w.uuid === next.workers[i].uuid &&
