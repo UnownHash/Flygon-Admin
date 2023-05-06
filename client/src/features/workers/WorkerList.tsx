@@ -24,12 +24,11 @@ export const WorkerList = () => {
         <ReferenceField source="area_id" reference="areas">
           <TextField source="name" />
         </ReferenceField>
-        <FunctionField<Worker>
-          label="Location"
-          render={(record) => {
-            if (!record) return null
-            return `${record.step || 0}/${record.end_step || 0}`
-          }}
+        <FunctionField
+          label="Start / Current / End"
+          render={(worker: Worker) =>
+            `${worker.start_step} / ${worker.step} / ${worker.end_step}`
+          }
         />
         <TextField source="username" />
         <TextField source="host" />

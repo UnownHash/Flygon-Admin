@@ -42,7 +42,8 @@
     "react": "^18.2.0",
     "react-admin": "^4.8.4",
     "react-dom": "^18.2.0",
-    "react-leaflet": "4.2.1"
+    "react-leaflet": "4.2.1",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@nrwl/cli": "15.6.2",
