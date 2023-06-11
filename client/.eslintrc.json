@@ -14,7 +14,9 @@
         "*.js",
         "*.jsx"
       ],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/ban-types": "off"
+      }
     },
     {
       "files": [

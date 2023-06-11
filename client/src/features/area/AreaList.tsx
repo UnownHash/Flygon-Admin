@@ -13,8 +13,6 @@ import {
   TopToolbar,
 } from 'react-admin'
 
-// import { Area } from './type'
-import { AreaExpand } from './AreaExpand'
 import { KojiMenuButton } from './Koji'
 
 const ListActions = () => (
@@ -33,8 +31,7 @@ export const AreaList = () => {
       sort={{ field: 'id', order: 'ASC' }}
     >
       <Datagrid
-        rowClick="expand"
-        expand={<AreaExpand />}
+        rowClick="edit"
         bulkActionButtons={
           <>
             <BulkDeleteWithUndoButton />

@@ -16,11 +16,13 @@ import {
 import { Layout, dataProvider, darkTheme } from '@features/admin'
 import { authProvider } from '@features/admin/authProvider'
 import { WorkerList } from '@features/workers'
+import { Dashboard } from '@features/dashboard'
 
 export const App = () => (
   <>
     <CssBaseline />
     <Admin
+      dashboard={Dashboard}
       dataProvider={dataProvider}
       authProvider={authProvider}
       layout={Layout}

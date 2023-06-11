@@ -16,7 +16,7 @@ export const SendKojiRequest = ({
   options,
   onClick,
 }: {
-  onClick: () => void
+  onClick: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
   children: React.ReactNode
   endpoint: string
   options: KojiOptions
@@ -78,7 +78,7 @@ export const SendKojiRequest = ({
       onClick={(event) => {
         event.stopPropagation()
         request.mutate()
-        onClick()
+        onClick(event)
       }}
     >
       {children}
@@ -86,14 +86,21 @@ export const SendKojiRequest = ({
   )
 }
 
-export const KojiMenuButton = ({ bulk = false }: { bulk?: boolean }) => {
+export const KojiMenuButton = ({
+  bulk = false,
+  children,
+}: {
+  bulk?: boolean
+  children?: React.ReactNode
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation()
     setAnchorEl(event.currentTarget)
   }
-  const handleClose = () => {
+  const handleClose = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    e.stopPropagation()
     setAnchorEl(null)
   }
 
@@ -166,6 +173,7 @@ export const KojiMenuButton = ({ bulk = false }: { bulk?: boolean }) => {
         >
           Route Gyms
         </SendKojiRequest> */}
+        {children}
       </Menu>
     </div>
   )

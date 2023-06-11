@@ -51,6 +51,7 @@ const getList = (
 ): Promise<GetListResult> => {
   const queryParams = {
     ...params.pagination,
+    ...params.filter,
     page: params.pagination.page - 1,
     sortBy: params.sort.field,
     order: params.sort.order,

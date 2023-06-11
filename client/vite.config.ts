@@ -54,6 +54,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@components': resolve(__dirname, './src/components'),
         '@features': resolve(__dirname, './src/features'),
+        '@state': resolve(__dirname, './src/state'),
       },
     },
     esbuild: {
