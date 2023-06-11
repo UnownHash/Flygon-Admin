@@ -6,6 +6,7 @@ import {
   Pagination,
   ReferenceField,
   TextField,
+  TopToolbar,
 } from 'react-admin'
 
 import { Worker } from './type'
@@ -15,9 +16,9 @@ export const WorkerList = () => {
     <List
       pagination={<Pagination rowsPerPageOptions={[25, 50, 100]} />}
       title="Workers"
-      actions={false}
       perPage={25}
       sort={{ field: 'uuid', order: 'ASC' }}
+      actions={<TopToolbar />}
     >
       <Datagrid>
         <TextField source="uuid" label="UUID" />
