@@ -12,8 +12,8 @@ import { ProgressBar } from './ProgressBar'
 import { KojiMenuButton } from '@features/area/Koji'
 import Grid from '@mui/material/Unstable_Grid2'
 
-export const getPercent = (num = 0, total = 0) =>
-  +((num || 0) / (total || 1)).toFixed(2) * 100
+export const getPercent = (num = 0, total = 1) =>
+  +((num / total) * 100).toFixed(2)
 
 export const DashboardTile = ({
   area,
