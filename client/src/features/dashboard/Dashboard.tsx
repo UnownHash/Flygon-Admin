@@ -89,11 +89,13 @@ export const Dashboard = (): JSX.Element => {
           </Grid>
         ) : (
           <VariableSizeList
+            key={search}
             height={parentRef?.current?.clientHeight || 0}
             itemCount={filteredAreas.length}
-            itemSize={(i) =>
-              300 + (workerObj[filteredAreas[i].id]?.length * 50 || 0)
-            }
+            itemSize={(i) => {
+              const length = workerObj[filteredAreas[i].id]?.length || 0
+              return 305 + (length ? 34 * (length + 1) : 0)
+            }}
             width="100%"
           >
             {({ index, style }) => {
