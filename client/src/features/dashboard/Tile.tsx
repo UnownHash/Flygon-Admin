@@ -70,8 +70,6 @@ export const DashboardTile = ({
     }
   }, [])
 
-  if (isIntersecting) console.log(area.name, 'intersecting')
-
   return (
     <Card ref={ref} variant="outlined" sx={{ p: 4 }}>
       <CardHeader
