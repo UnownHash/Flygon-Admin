@@ -30,10 +30,10 @@ export const AccountShow = () => (
       <NumberField source="warn_expiration_ms" />
       {(['last_banned', 'last_suspended', 'last_disabled'] as const).map(
         (key) => (
-          <FunctionField<Account>
+          <FunctionField
             key={key}
             label={snakeToPascal(key)}
-            render={(account) => formatDate(account?.[key])}
+            render={(account: Account) => formatDate(account?.[key])}
           />
         ),
       )}

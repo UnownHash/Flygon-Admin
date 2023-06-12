@@ -26,9 +26,9 @@ export const AreaShow = () => (
       </Typography>
       <BooleanField source="enable_quests" label="Enabled" />
       <NumberField source="quest_mode.workers" label="Quest workers" />
-      <FunctionField<Area>
+      <FunctionField
         label="Quest hours"
-        render={(area) => {
+        render={(area: Area) => {
           const hours = area?.quest_mode.hours
           if (!hours || !Array.isArray(hours) || hours.length < 2) {
             return '-'
