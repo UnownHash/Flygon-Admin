@@ -13,7 +13,7 @@ import { KojiMenuButton } from '@features/area/Koji'
 import Grid from '@mui/material/Unstable_Grid2'
 
 export const getPercent = (num = 0, total = 1) =>
-  +((num / total) * 100).toFixed(2)
+  +(+(num / total) * 100).toFixed(2) || 0
 
 export const DashboardTile = ({
   area,
@@ -69,8 +69,6 @@ export const DashboardTile = ({
       return () => observer.disconnect()
     }
   }, [])
-
-  if (isIntersecting) console.log(area.name, 'intersecting')
 
   return (
     <Card ref={ref} variant="outlined" sx={{ p: 4 }}>
