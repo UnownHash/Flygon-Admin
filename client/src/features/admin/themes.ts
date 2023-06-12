@@ -6,13 +6,15 @@ export const lightTheme = {
   palette: {
     ...defaultTheme.palette,
     secondary: {
-      ...defaultTheme.palette.secondary,
+      ...defaultTheme.palette?.secondary,
       dark: '#b26a00',
       main: '#ff9800',
       light: '#ffac33',
     },
   },
 }
+
 export const darkTheme = createTheme({
+  ...defaultTheme,
   palette: { mode: 'dark' },
 })
