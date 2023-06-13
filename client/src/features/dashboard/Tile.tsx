@@ -55,6 +55,7 @@ export const DashboardTile = ({
         last_seen: Date.now(),
         area_id: area.id,
         host: '',
+        mode: 'Pokemon',
       })
     }
     return local
@@ -71,7 +72,7 @@ export const DashboardTile = ({
   }, [])
 
   return (
-    <Card ref={ref} variant="outlined" sx={{ p: 4 }}>
+    <Card ref={ref} variant="outlined" sx={{ p: 4, my: 4 }}>
       <CardHeader
         titleTypographyProps={{ variant: 'h4' }}
         action={<KojiMenuButton />}
