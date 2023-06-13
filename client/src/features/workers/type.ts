@@ -8,4 +8,5 @@ export interface Worker {
   step: number
   host: string
   last_seen: number
+  mode: string
 }

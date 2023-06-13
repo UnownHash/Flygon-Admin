@@ -1,21 +1,16 @@
 import { useMemo, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { VariableSizeList } from 'react-window'
+import { Virtuoso } from 'react-virtuoso'
+
 import { Worker } from '@features/workers/type'
 import { DashboardTile } from './Tile'
-import {
-  CircularProgress,
-  TextField,
-  Theme,
-  useMediaQuery,
-} from '@mui/material'
+import { CircularProgress, TextField } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useFeatureWorkers } from './useFeatureWorkers'
 
 export const Dashboard = (): JSX.Element => {
   const [search, setSearch] = useState('')
-  const isTablet = useMediaQuery((t: Theme) => t.breakpoints.down('sm'))
 
   const { workers, areas, isLoading } = useFeatureWorkers(true, 3000)
 
@@ -34,7 +29,7 @@ export const Dashboard = (): JSX.Element => {
     }, {} as Record<number, Worker[]>) || {}
 
   return (
-    <Box mx={2} key={`${isLoading}`}>
+    <Box mx={2} key={`${isLoading}`} height="75%">
       <Box py={2}>
         <Typography
           variant="h3"
@@ -76,29 +71,15 @@ export const Dashboard = (): JSX.Element => {
           </Grid>
         </Grid>
       ) : (
-        <VariableSizeList
-          key={search}
-          height={window.innerHeight}
-          itemCount={filteredAreas.length}
-          itemSize={(i) => {
-            const length = workerObj[filteredAreas[i].id]?.length || 0
+        <Virtuoso
+          totalCount={filteredAreas.length}
+          data={filteredAreas}
+          itemContent={(_, data) => {
             return (
-              (isTablet ? 450 : 305) +
-              (length ? (isTablet ? 50 : 34) * (length + 1) : 0)
+              <DashboardTile area={data} workers={workerObj[data.id] || []} />
             )
           }}
-          width={isTablet ? 800 : '100%'}
-        >
-          {({ index, style }) => {
-            const area = filteredAreas[index]
-            if (!area) return null
-            return (
-              <div key={area.id} style={style}>
-                <DashboardTile area={area} workers={workerObj[area.id] || []} />
-              </div>
-            )
-          }}
-        </VariableSizeList>
+        />
       )}
     </Box>
   )
