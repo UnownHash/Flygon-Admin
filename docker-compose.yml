@@ -15,6 +15,6 @@ services:
       ADMIN_GOLBAT_API_SECRET: secret
 
       ADMIN_KOJI_API_ENDPOINT: http://koji:8080
-      ADMIN_KOJI_API_BEARER_TOKEN: secret
+      ADMIN_KOJI_BEARER_TOKEN: secret
     ports:
       - '9003:9003'
